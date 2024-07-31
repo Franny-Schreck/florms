@@ -4,7 +4,6 @@ extends Resource
 enum Type { NORMAL, UNLAWFUL}
 
 @export_group("Card Attributes")
-#@export var id: String
 @export var type: Type
 @export var cost: int
 
@@ -17,17 +16,8 @@ enum Type { NORMAL, UNLAWFUL}
 func effect(district: District) -> Effect:
 	Events.card_played.emit(self)
 	print("card effect, i am inside card.gd")
+	# What is going on?
 	return Effect.new()
-
-#func play(target: District, stats: Stats) -> void:
-	#Events.card_played.emit(self)
-	##stats.gov_points -= cost
-	##apply_effects(tree.get_nodes_in_group("disctricts"))
-#
-#
-#func apply_effects(_targets: Array[Node]) -> void:
-	#print("i am inside card.gd")
-	#pass
 
 
 

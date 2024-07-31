@@ -11,7 +11,7 @@ var draw_pile: CardPile
 
  ##Save starting deck for new runs
 #func create_instance() -> Resource:
-	#var instance: Stats = self.duplicate()
+	#var instance: Stats = Stats.duplicate()
 	#instance.gov_points = max_gov_points
 	#instance.florin = max_florin
 	#instance.reset_florin()

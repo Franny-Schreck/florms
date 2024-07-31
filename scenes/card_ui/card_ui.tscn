@@ -1,0 +1,147 @@
+[gd_scene load_steps=18 format=3 uid="uid://b7rq7fwsqxk83"]
+
+[ext_resource type="Texture2D" uid="uid://iuulqag16w8v" path="res://assets/art/card_base.png" id="1_0bv4o"]
+[ext_resource type="Script" path="res://scenes/card_ui/card_ui.gd" id="1_5cfti"]
+[ext_resource type="StyleBox" uid="uid://deyi1l6ltioqp" path="res://scenes/card_ui/card_hover_stylebox.tres" id="2_30ge3"]
+[ext_resource type="Texture2D" uid="uid://dhgd0235ownkb" path="res://assets/art/cost_base_v4.png" id="2_kbdp5"]
+[ext_resource type="FontFile" uid="uid://d3xfqxgsknq4o" path="res://assets/fonts/PixelOperator8.ttf" id="3_cnd2c"]
+[ext_resource type="Texture2D" uid="uid://dtyqresyo78ct" path="res://assets/art/regierung_smaller.png" id="4_bg7pe"]
+[ext_resource type="FontFile" uid="uid://dskmdk146n4rq" path="res://assets/fonts/pixel_rpg.ttf" id="5_4wl0m"]
+[ext_resource type="Script" path="res://scenes/card_ui/card_state_machine.gd" id="7_xdtis"]
+[ext_resource type="Script" path="res://scenes/card_ui/card_states/card_base_state.gd" id="8_3wytf"]
+[ext_resource type="Script" path="res://scenes/card_ui/card_states/card_clicked_state.gd" id="9_jrmgw"]
+[ext_resource type="Script" path="res://scenes/card_ui/card_states/card_dragging_state.gd" id="10_yj3ob"]
+[ext_resource type="Script" path="res://scenes/card_ui/card_states/card_released_state.gd" id="11_4trd1"]
+[ext_resource type="Script" path="res://scenes/card_ui/card_states/card_aiming_state.gd" id="12_orcti"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cdfnj"]
+font = ExtResource("3_cnd2c")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_h1kb6"]
+line_spacing = 2.0
+font = ExtResource("5_4wl0m")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5uitg"]
+font = ExtResource("3_cnd2c")
+font_size = 8
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g35m5"]
+size = Vector2(78, 116)
+
+[node name="CardUI" type="Control"]
+custom_minimum_size = Vector2(80, 120)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -216.0
+offset_top = -133.0
+offset_right = -712.0
+offset_bottom = -337.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 2.0
+script = ExtResource("1_5cfti")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -4.0
+offset_right = 82.0
+offset_bottom = 121.0
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("2_30ge3")
+
+[node name="BaseCardSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("1_0bv4o")
+centered = false
+
+[node name="CostDisplay" type="Node2D" parent="."]
+position = Vector2(7, 8)
+scale = Vector2(0.3, 0.3)
+
+[node name="CostBaseSprite" type="Sprite2D" parent="CostDisplay"]
+position = Vector2(-2, 10)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("2_kbdp5")
+
+[node name="CostLabel" type="Label" parent="CostDisplay"]
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 24.0
+offset_bottom = 32.0
+scale = Vector2(1.3, 1.3)
+text = "2"
+label_settings = SubResource("LabelSettings_cdfnj")
+
+[node name="CardName" type="Node2D" parent="."]
+
+[node name="NameLabel" type="Label" parent="CardName"]
+offset_left = 18.0
+offset_top = 8.0
+offset_right = 298.0
+offset_bottom = 58.0
+scale = Vector2(0.2, 0.2)
+text = "Balìa"
+label_settings = SubResource("LabelSettings_h1kb6")
+
+[node name="CardImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 22.0
+offset_right = 75.0
+offset_bottom = 66.0
+texture = ExtResource("4_bg7pe")
+expand_mode = 3
+
+[node name="CardDescription" type="Label" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 71.0
+offset_right = 133.0
+offset_bottom = 153.0
+scale = Vector2(0.5, 0.5)
+text = "contentment or something"
+label_settings = SubResource("LabelSettings_5uitg")
+autowrap_mode = 3
+
+[node name="DropPointDetector" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]
+position = Vector2(40, 61)
+shape = SubResource("RectangleShape2D_g35m5")
+
+[node name="CardStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("7_xdtis")
+initial_state = NodePath("CardBaseState")
+
+[node name="CardBaseState" type="Node" parent="CardStateMachine"]
+script = ExtResource("8_3wytf")
+
+[node name="CardClickedState" type="Node" parent="CardStateMachine"]
+script = ExtResource("9_jrmgw")
+state = 1
+
+[node name="CardDraggingState" type="Node" parent="CardStateMachine"]
+script = ExtResource("10_yj3ob")
+state = 2
+
+[node name="CardReleasedState" type="Node" parent="CardStateMachine"]
+script = ExtResource("11_4trd1")
+state = 4
+
+[node name="CardAimingState" type="Node" parent="CardStateMachine"]
+script = ExtResource("12_orcti")
+state = 3
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="area_entered" from="DropPointDetector" to="." method="_on_drop_point_detector_area_entered"]
+[connection signal="area_exited" from="DropPointDetector" to="." method="_on_drop_point_detector_area_exited"]

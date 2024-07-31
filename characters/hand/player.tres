@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://c6ukjnsuby0k1"]
+
+[ext_resource type="Script" path="res://custom_resources/stats.gd" id="1_m74cl"]
+
+[resource]
+script = ExtResource("1_m74cl")
+max_gov_points = 7
+max_florin = 4
+draw_per_turn = 0

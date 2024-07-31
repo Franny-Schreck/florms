@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://qpx0rx28gmgk"]
+
+[sub_resource type="Curve" id="Curve_5a76k"]
+min_value = 0.2
+max_value = 3.0
+_data = [Vector2(0, 0.2), 0.0, 0.0, 0, 0, Vector2(0.947257, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="CardArc" type="Line2D"]
+z_index = 2
+texture_filter = 1
+width = 4.0
+width_curve = SubResource("Curve_5a76k")
+joint_mode = 2

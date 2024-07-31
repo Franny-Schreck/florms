@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://clipoiyjnc46c"]
+
+[ext_resource type="Script" path="res://custom_resources/card.gd" id="1_tfj28"]
+
+[resource]
+script = ExtResource("1_tfj28")
+type = null
+cost = 2
+name = null
+description = null

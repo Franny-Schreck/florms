@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbxjtepon0fbh"]
+
+[ext_resource type="Script" path="res://scenes/districts/district.gd" id="1_adtdm"]
+[ext_resource type="Texture2D" uid="uid://8lfl3708ce0h" path="res://assets/art/arrow.png" id="3_i4xwl"]
+[ext_resource type="Texture2D" uid="uid://uuuohqyfsnr1" path="res://assets/art/selector.png" id="3_lugch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2soph"]
+size = Vector2(340, 317.5)
+
+[sub_resource type="GDScript" id="GDScript_wb6dc"]
+script/source = "extends District
+
+
+
+
+
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ua7fg"]
+size = Vector2(8.175, 5.1)
+
+[node name="Districts" type="Area2D" groups=["disctricts"]]
+collision_layer = 4
+script = ExtResource("1_adtdm")
+
+[node name="CollisionCity" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-115, -54.75)
+shape = SubResource("RectangleShape2D_2soph")
+
+[node name="District1Area" type="Area2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.254902)
+z_index = 2
+scale = Vector2(20, 20)
+collision_layer = 4
+script = SubResource("GDScript_wb6dc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="District1Area"]
+position = Vector2(-7.2, -5.2)
+shape = SubResource("RectangleShape2D_ua7fg")
+
+[node name="Distric1Selector" type="Sprite2D" parent="District1Area"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-7.15, -5.25)
+scale = Vector2(0.615385, 0.420833)
+texture = ExtResource("3_lugch")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-46, -102)
+texture = ExtResource("3_i4xwl")
+
+[connection signal="area_entered" from="District1Area" to="." method="_on_district_1_area_area_entered"]
+[connection signal="area_exited" from="District1Area" to="." method="_on_district_1_area_area_exited"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq77ekktpyggt"]
+
+[ext_resource type="PackedScene" uid="uid://cp7sq5lwei37e" path="res://scenes/ui/stats_ui.tscn" id="1_vvsu5"]
+
+[sub_resource type="GDScript" id="GDScript_4267f"]
+script/source = "class_name Player
+extends Node2D
+
+
+
+
+
+
+
+
+
+
+"
+
+[node name="Stats" type="Node2D"]
+script = SubResource("GDScript_4267f")
+
+[node name="StatsUI" parent="." instance=ExtResource("1_vvsu5")]

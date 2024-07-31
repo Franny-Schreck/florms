@@ -1,0 +1,32 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dm37jdvmvqgll"]
+
+[ext_resource type="Texture2D" uid="uid://dtyqresyo78ct" path="res://assets/art/regierung_smaller.png" id="1_t7v2o"]
+
+[sub_resource type="GDScript" id="GDScript_vm7rc"]
+script/source = "extends Card
+
+
+func apply_effects(targets: Array[Node]) -> void:
+	print(\"apply effects\")
+	#var play_card_effect := PlayCardEffect.new()
+	#play_card_effect.amount = 8
+	#play_card_effect.execute(targets)
+	
+	
+#+2 gov. points
+#+3 cards
+#
+#-2 contentment
+#-1 florin next round
+
+
+
+"
+
+[resource]
+script = SubResource("GDScript_vm7rc")
+type = 0
+cost = 8
+name = "governance"
+picture = ExtResource("1_t7v2o")
+description = "hello there custom description"

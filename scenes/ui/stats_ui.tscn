@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp7sq5lwei37e"]
+
+[ext_resource type="Theme" uid="uid://bn13w4gfeet8a" path="res://main_theme.tres" id="1_r52g1"]
+[ext_resource type="Texture2D" uid="uid://bdupbdcrvwgfx" path="res://assets/art/florin.png" id="2_axj05"]
+[ext_resource type="Script" path="res://scenes/ui/stats_ui.gd" id="2_kxmjc"]
+[ext_resource type="Texture2D" uid="uid://bkvg8m5msxqs" path="res://assets/art/gov_points2.png" id="3_gewqw"]
+
+[node name="StatsUI" type="HBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.0
+offset_right = 75.0
+offset_bottom = 24.0
+grow_horizontal = 2
+theme = ExtResource("1_r52g1")
+theme_override_constants/separation = 20
+alignment = 1
+script = ExtResource("2_kxmjc")
+
+[node name="Florin" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="FlorinImage" type="TextureRect" parent="Florin"]
+layout_mode = 2
+texture = ExtResource("2_axj05")
+stretch_mode = 5
+
+[node name="FlorinLabel" type="Label" parent="Florin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GovPoints" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="GovPointsImage" type="TextureRect" parent="GovPoints"]
+layout_mode = 2
+texture = ExtResource("3_gewqw")
+stretch_mode = 5
+
+[node name="GovPointsLabel" type="Label" parent="GovPoints"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1

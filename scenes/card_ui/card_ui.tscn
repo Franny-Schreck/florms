@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://b7rq7fwsqxk83"]
 
 [ext_resource type="Texture2D" uid="uid://iuulqag16w8v" path="res://assets/art/card_base.png" id="1_0bv4o"]
-[ext_resource type="Script" path="res://scenes/card_ui/card_ui.gd" id="1_5cfti"]
+[ext_resource type="Script" path="res://scenes/card_ui/card.gd" id="1_5cfti"]
 [ext_resource type="StyleBox" uid="uid://deyi1l6ltioqp" path="res://scenes/card_ui/card_hover_stylebox.tres" id="2_30ge3"]
 [ext_resource type="Texture2D" uid="uid://dhgd0235ownkb" path="res://assets/art/cost_base_v4.png" id="2_kbdp5"]
 [ext_resource type="FontFile" uid="uid://d3xfqxgsknq4o" path="res://assets/fonts/PixelOperator8.ttf" id="3_cnd2c"]

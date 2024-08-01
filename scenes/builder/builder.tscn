@@ -1,15 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://cyi45o0sds2y8"]
+[gd_scene load_steps=9 format=3 uid="uid://cyi45o0sds2y8"]
 
 [ext_resource type="Script" path="res://scenes/builder/global_data.gd" id="1_7fo0m"]
 [ext_resource type="Texture2D" uid="uid://bir234fyeql0u" path="res://assets/art/background_with_city.png" id="1_iwm1x"]
 [ext_resource type="PackedScene" uid="uid://dbxjtepon0fbh" path="res://scenes/districts/district.tscn" id="2_1ra7h"]
 [ext_resource type="PackedScene" uid="uid://b7rq7fwsqxk83" path="res://scenes/card_ui/card_ui.tscn" id="2_3arq4"]
-[ext_resource type="Script" path="res://scenes/ui/deck_ui.gd" id="2_ughwv"]
 [ext_resource type="PackedScene" uid="uid://dq77ekktpyggt" path="res://scenes/stats/stats.tscn" id="3_6aene"]
 [ext_resource type="PackedScene" uid="uid://b3qdwgg83pr4" path="res://scenes/card_target_selector/card_target_selector.tscn" id="3_jiwym"]
-[ext_resource type="Resource" uid="uid://c6ukjnsuby0k1" path="res://characters/hand/player.tres" id="4_thapf"]
-[ext_resource type="Resource" uid="uid://dm37jdvmvqgll" path="res://characters/hand/cards/governance.tres" id="7_7jk0t"]
-[ext_resource type="Resource" uid="uid://clipoiyjnc46c" path="res://characters/hand/cards/banditry.tres" id="9_6jsog"]
+[ext_resource type="Script" path="res://scenes/builder/deck.gd" id="6_gl2us"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2k0f8"]
 size = Vector2(576, 324)
@@ -51,26 +48,18 @@ offset_top = -121.0
 grow_horizontal = 0
 grow_vertical = 0
 alignment = 1
-script = ExtResource("2_ughwv")
+script = ExtResource("6_gl2us")
 
 [node name="CardUI" parent="BuilderUI/Hand" instance=ExtResource("2_3arq4")]
 layout_mode = 2
-card = ExtResource("7_7jk0t")
-stats = ExtResource("4_thapf")
 
 [node name="CardUI2" parent="BuilderUI/Hand" instance=ExtResource("2_3arq4")]
 layout_mode = 2
-card = ExtResource("7_7jk0t")
-stats = ExtResource("4_thapf")
 
 [node name="CardUI3" parent="BuilderUI/Hand" instance=ExtResource("2_3arq4")]
 layout_mode = 2
-card = ExtResource("7_7jk0t")
-stats = ExtResource("4_thapf")
 
 [node name="CardUI4" parent="BuilderUI/Hand" instance=ExtResource("2_3arq4")]
 layout_mode = 2
-card = ExtResource("9_6jsog")
-stats = ExtResource("4_thapf")
 
 [connection signal="area_entered" from="Districts" to="Districts" method="_on_area_entered"]

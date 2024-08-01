@@ -27,6 +27,6 @@ func apply_effects(targets: Array[Node]) -> void:
 script = SubResource("GDScript_vm7rc")
 type = 0
 cost = 8
-name = "governance"
+card_name = "bliblap"
 picture = ExtResource("1_t7v2o")
 description = "hello there custom description"

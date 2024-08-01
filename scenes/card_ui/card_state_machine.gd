@@ -7,7 +7,7 @@ var current_state: CardState
 var states := {}				# Dictionary to store all states
 
 
-func init(card: CardUI) -> void:
+func init(card: Card) -> void:
 	# Iterate through all children in the state machine
 	for child in get_children():
 		
@@ -18,7 +18,7 @@ func init(card: CardUI) -> void:
 			# Connect to own function handling transition
 			child.transition_requested.connect(_on_transition_requested)
 			# Pass the card UI reference to the state itself
-			child.card_ui = card
+			child.card = card
 	
 	if initial_state:
 		initial_state.enter()

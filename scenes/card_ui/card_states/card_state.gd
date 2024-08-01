@@ -7,7 +7,7 @@ signal transition_requested(from: CardState, to: State)
 
 @export var state: State
 
-var card_ui: CardUI
+var card: Card
 
 
 func enter() -> void:

@@ -1,14 +1,23 @@
-class_name CardUI
+class_name Card
 extends Control
 
-signal reparent_requested(which_card_ui: CardUI)
+signal reparent_requested(which_card: Card)
 
 const BASE_STYLEBOX := preload("res://scenes/card_ui/card_base_stylebox.tres")
 const DRAG_STYLEBOX := preload("res://scenes/card_ui/card_dragging_stylebox.tres")
 const HOVER_STYLEBOX := preload("res://scenes/card_ui/card_hover_stylebox.tres")
 
-@export var card: Card : set = _set_card
-@export var stats: Stats
+enum Type { NORMAL, UNLAWFUL}
+
+
+@export_group("Card Attributes")
+@export var type: Type
+@export var cost: int
+
+@export_group("Card Visuals")
+@export var card_name: String
+@export var picture: Texture
+@export_multiline var description: String
 
 @onready var card_description: Label = $CardDescription
 @onready var cost_label: Label = $CostDisplay/CostLabel
@@ -22,6 +31,7 @@ const HOVER_STYLEBOX := preload("res://scenes/card_ui/card_hover_stylebox.tres")
 
 var parent: Control
 var tween: Tween
+
 
 
 func _ready() -> void:
@@ -57,17 +67,6 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	card_state_machine.on_mouse_exited()
 
-func _set_card(value: Card) -> void:
-	if not is_node_ready():
-		await ready
-	
-	card = value
-	cost_label.text = str(card.cost)
-	card_image.texture = card.picture
-	card_description.text = str(card.description)
-	name_label.text = str(card.name)
-
-
 func _on_drop_point_detector_area_entered(area: Area2D) -> void:
 	if not targets.has(area):
 		targets.append(area)
@@ -75,3 +74,5 @@ func _on_drop_point_detector_area_entered(area: Area2D) -> void:
 
 func _on_drop_point_detector_area_exited(area: Area2D) -> void:
 	targets.erase(area)
+
+

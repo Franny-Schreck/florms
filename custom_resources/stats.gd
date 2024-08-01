@@ -1,14 +1,27 @@
 class_name Stats
-extends Resource
+extends Node
 
 signal stats_changed
 
-@export var max_gov_points: int
-@export var max_florin: int
-@export var draw_per_turn: int
+#@onready var florin = $Florin
+#@onready var florin_label = %FlorinLabel
+#@onready var gov_points = $GovPoints
+#@onready var gov_points_label = %GovPointsLabel
+
+var florin_label = "90"
+var gov_points_label = "200"
+
+const max_gov_points: int = 20
+const max_florin: int = 50
+const draw_per_turn: int = 5
 
 var florin: int : set = set_florin
 var gov_points: int : set = set_gov_points
+
+
+func update_stats(stats: Stats) -> void:
+	florin_label.text =  str(stats.florin)
+	gov_points_label.text = str(stats.gov_points)
 
 
 func set_florin(value: int) -> void:
@@ -18,10 +31,6 @@ func set_florin(value: int) -> void:
 
 func reset_florin() -> void:
 	self.florin = max_florin
-
-
-func can_buy_card(card: Card) -> bool:
-	return florin >= card.buy_cost
 
 
 func set_gov_points(value: int) -> void:
@@ -37,16 +46,6 @@ func use_gov_points(resource_used : int) -> void:
 
 func gain_gov_points(amount: int) -> void:
 	self.gov_points += amount
-
-
-func can_play_card(card: Card) -> bool:
-	return gov_points >= card.play_cost
-
-
-
-
-
-
 
 
 

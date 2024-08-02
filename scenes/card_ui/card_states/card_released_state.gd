@@ -7,7 +7,7 @@ func enter() -> void:
 	
 	played = false
 	
-	if not card.targets.is_empty():
+	if card.target != null:
 		played = true
 		card.play()
 

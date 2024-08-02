@@ -67,8 +67,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if not current_card or not targeting:
 		return
 	
-	if not current_card.targets.has(area):
-		current_card.targets.append(area)
+	if current_card.target != area:
+		current_card.target = area
 
 
 func _on_area_2d_area_exited(area: Area2D) -> void:

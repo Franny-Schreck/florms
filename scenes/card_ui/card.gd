@@ -2,12 +2,13 @@ class_name Card
 extends Control
 
 signal reparent_requested(which_card: Card)
+signal card_played(card_id: String)
 
 const BASE_STYLEBOX := preload("res://scenes/card_ui/card_base_stylebox.tres")
 const DRAG_STYLEBOX := preload("res://scenes/card_ui/card_dragging_stylebox.tres")
 const HOVER_STYLEBOX := preload("res://scenes/card_ui/card_hover_stylebox.tres")
 
-enum Type { NORMAL, UNLAWFUL}
+enum Type { NORMAL, UNLAWFUL }
 
 
 @export_group("Card Attributes")
@@ -16,18 +17,19 @@ enum Type { NORMAL, UNLAWFUL}
 
 @export_group("Card Visuals")
 @export var card_name: String
-@export var picture: Texture
+@export var image: Texture
 @export_multiline var description: String
 
-@onready var card_description: Label = $CardDescription
-@onready var cost_label: Label = $CostDisplay/CostLabel
-@onready var name_label: Label = $CardName/NameLabel
-@onready var card_image: TextureRect = $CardImage
+@onready var cost_node: Label = $CostDisplay/CostLabel
+@onready var card_name_node: Label = $CardName/NameLabel
+@onready var image_node: TextureRect = $CardImage
+@onready var description_node: Label = $CardDescription
+
 @onready var panel: Panel = $Panel
 
 @onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine
 @onready var drop_point_detector: Area2D = $DropPointDetector
-@onready var targets: Array[Node] = []
+@onready var target: Node = null
 
 var parent: Control
 var tween: Tween
@@ -67,12 +69,12 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	card_state_machine.on_mouse_exited()
 
+
 func _on_drop_point_detector_area_entered(area: Area2D) -> void:
-	if not targets.has(area):
-		targets.append(area)
+	target = area
 
 
 func _on_drop_point_detector_area_exited(area: Area2D) -> void:
-	targets.erase(area)
+	target = null
 
 

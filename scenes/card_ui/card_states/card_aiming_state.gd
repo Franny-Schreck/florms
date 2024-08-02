@@ -5,7 +5,7 @@ const MOUSE_Y_SNAPBACK_THRESHOLD := 800
 
 func enter() -> void:
 	#card_ui.name_label.text = "AIMING"
-	card.targets.clear()
+	card.target = null
 	
 	# Animate card to center of hand
 	var offset := Vector2(card.parent.size.x / 2, -card.size.y / 2)
